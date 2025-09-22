@@ -2,7 +2,7 @@
 
 pushd `dirname "$0"`/icons
 
-yarn install
-yarn build
+npm install
+npm run build
 
 popd
