@@ -1,0 +1,14 @@
+{
+  "name": "abhiraj-bibhar",
+  "scripts": {
+    "clean": "rm -rf public resources",
+    "serve": "npm run clean && hugo serve --noBuildLock",
+    "build": "npm run clean && hugo --minify --noBuildLock",
+    "deploy-confirmation": "sh -ec 'OUT=$(wrangler whoami 2>&1); if echo \"$OUT\" | grep -q \"not authenticated\"; then printf \"⚠ You are not logged in to wrangler. Do you want to login now ? (yes/no): \"; read LOGIN; if [ \"$LOGIN\" = \"yes\" ]; then wrangler login && wrangler whoami || { echo \"Login failed.\"; exit 1; }; else echo \"Login Cancelled.\"; exit 1; fi; else echo \"$OUT\"; fi; echo \"⟢ Deploying Project Name: $npm_package_name\"; printf \"⌲ Proceed With Deployment? (yes/no): \"; read CONFIRM; [ \"$CONFIRM\" = \"yes\" ] || (echo \"Deployment Cancelled.\" && exit 1)'",
+    "predeploy": "npm run deploy-confirmation --silent",
+    "deploy": "npm run build && wrangler pages deploy ./public --project-name=$npm_package_name"
+  },
+  "devDependencies": {
+    "wrangler": "^4.38.0"
+  }
+}

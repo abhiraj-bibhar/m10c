@@ -1,5 +1,5 @@
-baseURL = "https://example.com"
-title = "Your title"
+baseURL = "https://abhirajbibhar.pages.dev/"
+title = "Abhiraj Bibhar"
 
 [pagination]
   pagerSize = 8
@@ -20,23 +20,29 @@ title = "Your title"
     name = "About"
     url = "/about/"
     weight = 3
+  [[menu.main]]
+    identifier = "gs-notes"
+    name = "GS Notes"
+    url = "/gs-notes/"
+    weight = 3
 
 [params]
-  author = "John Doe"
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  menu_item_separator = " - "
+  author = "Abhiraj Bibhar"
+  description = "Bloom In the garden of uncommon Dreams"
+  menu_item_separator = " ☸︎ "
+  images = ['screenshot.png']
   [[params.social]]
     icon = "brand-github"
     name = "Github"
-    url = "https://github.com/gohugoio"
+    url = "https://github.com/abhiraj-bibhar"
   [[params.social]]
     icon = "brand-x"
     name = "X"
-    url = "https://twitter.com/gohugoio"
+    url = "https://twitter.com/AbhirajBibhar"
   [[params.social]]
     icon = "brand-mastodon"
     name = "Twitter"
-    url = "https://twitter.com/gohugoio"
+    url = "https://mastodon.social/@abhirajbibhar"
 
   # Default theme
   # [params.style]
@@ -45,7 +51,8 @@ title = "Your title"
   #   lightColor = "#afbac4"
   #   lightestColor = "#ffffff"
   #   primaryColor = "#FF9800"
-
+  #   radius = "10%"
+  
   # Green theme
   # [params.style]
   #   darkestColor = "#315659"
@@ -53,6 +60,7 @@ title = "Your title"
   #   lightColor = "#96a879"
   #   lightestColor = "#fff"
   #   primaryColor = "#dad865"
+  #   radius = "10%"
 
   # Red theme
   # [params.style]
@@ -61,8 +69,10 @@ title = "Your title"
   #   lightColor = "#d6d6d6"
   #   lightestColor = "#d3d3d3"
   #   primaryColor = "#ffffff"
-  
+  #   radius = "10%"
+
 [module]
   [module.hugoVersion]
     extended = true
     min = "0.128.0"
+    
