@@ -29,8 +29,7 @@ title = "Abhiraj Bibhar"
 [params]
   author = "Abhiraj Bibhar"
   description = "Bloom In the garden of uncommon Dreams"
-  menu_item_separator = " ☸︎ "
-  images = ['screenshot.png']
+  menu_item_separator = "☸︎"
   [[params.social]]
     icon = "brand-github"
     name = "Github"
