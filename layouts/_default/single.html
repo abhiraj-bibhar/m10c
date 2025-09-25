@@ -4,14 +4,13 @@
       <h1 class ="post-title">{{ .Title }}</h1>
       {{- if ne .Type "page" }}
       <div class="post-meta">
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-          {{ .PublishDate.Format "Jan 2, 2006" }}
-        </div>
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-          {{ .ReadingTime }} min read
-        </div>
+          <span class="posts-list-item-description">
+            {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+            {{ .PublishDate.Format "Jan 2, 2006" }}
+            <span class="posts-list-item-separator">-</span>
+            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+            {{ .ReadingTime }} min read
+          </span>
         {{- with .Params.tags }}
         <div>
           {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}

@@ -3,20 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Garden Sidebar Design</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Demo Digital Garden</title>
+    <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #FF9800; /* Forest green for a garden theme */
+            --primary-color: #FF9800; /* Orange for highlights */
             --secondary-color: #556b2f; /* Olive green */
-            --accent-color: #FF9800; /* Gold for highlights */
+            --accent-color: #FF9800; /* Gold for accents */
             --sidebar-width: 20rem;
             --topbar-height: 60px;
             --text-color: #afbac4;
             --bg-color: #f9f9f9;
             --link-color: #FF9800;
             --neumorphic-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05), -5px -5px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #afbac4;
+            --bg-color: #242930;
+            --link-color: #FF9800;
+            --topbar-bg: #1a1e23;
+            --sidebar-bg: #242930;
+            --content-bg: #353b43;
+        }
+
+        [data-theme="light"] {
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --link-color: #e68900;
+            --topbar-bg: #ffffff;
+            --sidebar-bg: #ffffff;
+            --content-bg: #f9f9f9;
         }
 
         * {
@@ -27,8 +45,8 @@
 
         body {
             font-family: 'Merriweather', serif;
-            background-color: #353b43;
-            color: #afbac4;
+            background-color: var(--content-bg);
+            color: var(--text-color);
             line-height: 1.8;
             overflow-x: hidden;
         }
@@ -40,22 +58,30 @@
             left: 0;
             width: 100%;
             height: var(--topbar-height);
-            background: #242930;
+            background: var(--topbar-bg);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-bottom:1px solid #000;
-            z-index: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 999;
         }
 
         .topbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-family: 'Roboto', sans-serif;
             font-size: 24px;
             font-weight: 500;
-            color: #ffffff;
+            color: var(--text-color);
             letter-spacing: 1px;
+        }
+
+        .topbar .logo svg {
+            width: 32px;
+            height: 32px;
         }
 
         .topbar .controls {
@@ -66,7 +92,7 @@
 
         .topbar .controls .icon {
             font-size: 20px;
-            color: #ffffff;
+            color: var(--text-color);
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
         }
@@ -85,14 +111,14 @@
         .topbar .controls .language-switcher .language-button {
             background: transparent;
             border: none;
-            color: #ffffff;
+            color: var(--text-color);
             font-family: 'Roboto', sans-serif;
-            font-size: 20px; /* Same size as icons */
+            font-size: 20px;
             font-weight: 500;
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
-            padding: 0; /* Compact like icons */
-            width: 30px; /* Approximate icon width */
+            padding: 0;
+            width: 30px;
             text-align: center;
         }
 
@@ -105,13 +131,13 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: #ffffff;
-            border: 1px solid #ddd;
+            background: var(--sidebar-bg);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 4px;
             box-shadow: var(--neumorphic-shadow);
             display: none;
             z-index: 10;
-            min-width: 150px; /* Wider for full names */
+            min-width: 150px;
         }
 
         .topbar .controls .language-switcher .language-dropdown.active {
@@ -135,7 +161,7 @@
         .topbar .hamburger {
             display: none;
             font-size: 24px;
-            color: #ffffff;
+            color: var(--text-color);
             cursor: pointer;
         }
 
@@ -146,10 +172,10 @@
             left: 0;
             width: var(--sidebar-width);
             height: calc(100vh - var(--topbar-height));
-            background: #242930;
-            border-right: 1px solid #FF9800;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--primary-color);
             padding: 30px 20px;
-            overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
+            overflow-y: scroll;
             transition: transform 0.4s ease-in-out;
             z-index: 999;
         }
@@ -183,22 +209,24 @@
         .sidebar .search-bar {
             margin-bottom: 30px;
             position: relative;
-            height: 40px; /* Fixed height to prevent shift */
+            height: 40px;
         }
 
         .sidebar .search-bar input {
             width: 100%;
-            height: 100%; /* Match parent height */
-            padding: 12px 12px 12px 40px; /* Adjust padding for icon */
-            border: 1px solid #afbac4;
+            height: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid var(--text-color);
             border-radius: 6px;
             font-size: 14px;
-            background: #242930;
-            outline: none; /* Prevent outline from causing shifts */
+            background: var(--sidebar-bg);
+            color: var(--text-color);
+            outline: none;
         }
 
         .sidebar .search-bar input::placeholder {
-            color: #afbac4;
+            color: var(--text-color);
+            opacity: 0.6;
         }
 
         .sidebar .search-bar .search-icon {
@@ -243,47 +271,47 @@
         .sidebar .toggle-submenu {
             cursor: pointer;
             display: flex;
-            justify-content: space-between; /* Push chevron to the right */
+            justify-content: space-between;
             align-items: center;
-            width: 100%; /* Ensure full width for alignment */
+            width: 100%;
         }
 
         .sidebar .toggle-submenu .label {
             display: flex;
             align-items: center;
-            gap: 10px; /* Maintain spacing between icon and text */
+            gap: 10px;
         }
 
-        .sidebar .toggle-submenu .fa-chevron-down {
-            font-size: 14px; /* Slightly smaller for better aesthetics */
-            transition: transform 0.3s ease; /* Smooth rotation */
+        .sidebar .toggle-submenu .chevron {
+            font-size: 14px;
+            transition: transform 0.3s ease;
         }
 
-        .sidebar .toggle-submenu .fa-rotate-180 {
+        .sidebar .toggle-submenu .rotate {
             transform: rotate(180deg);
         }
 
         .sidebar .submenu {
             height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, opacity 0.3s ease; /* Add opacity for smoother transition */
-            opacity: 0; /* Start invisible */
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
         }
 
         .sidebar .submenu.active {
-            opacity: 1; 
+            opacity: 1;
         }
 
         .sidebar ul ul {
             border-left: 1.5px solid var(--primary-color);
-            padding-left: 15px;   
-            margin-left: 10px;    
+            padding-left: 15px;
+            margin-left: 10px;
         }
-        
+
         .sidebar ul ul li a {
-            font-size: 14px;    
+            font-size: 14px;
         }
-        
+
         .sidebar .recent-notes {
             margin-top: 30px;
         }
@@ -322,24 +350,25 @@
         .main-content {
             margin-left: var(--sidebar-width);
             margin-top: var(--topbar-height);
-            padding: 0; /* Remove padding */
-            margin-right: 0; /* Remove right margin */
-            width: calc(100% - var(--sidebar-width)); /* Full width minus sidebar */
-            height: calc(100vh - var(--topbar-height)); /* Full height minus topbar */
-            overflow-y: auto; /* Allow scrolling for normal content */
+            padding: 0;
+            margin-right: 0;
+            width: calc(100% - var(--sidebar-width));
+            height: calc(100vh - var(--topbar-height));
+            overflow-y: auto;
+            background: var(--content-bg);
         }
 
         #pdf-viewer {
             width: 100%;
             height: 100%;
-            border: none; /* Remove any potential borders */
-            display: none; /* Hidden by default unless PDF is active */
+            border: none;
+            display: none;
         }
 
         .content {
-            padding: 20px; /* Padding for normal content */
-            max-width: 800px; /* Constrain content width for readability */
-            margin: 0 auto; /* Center content */
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .content h1 {
@@ -373,9 +402,9 @@
             .main-content {
                 margin-left: 0;
                 margin-top: var(--topbar-height);
-                padding: 0; /* Remove padding for mobile */
-                width: 100%; /* Full width */
-                height: calc(100vh - var(--topbar-height)); /* Full height */
+                padding: 0;
+                width: 100%;
+                height: calc(100vh - var(--topbar-height));
             }
 
             .topbar .hamburger {
@@ -383,76 +412,78 @@
             }
 
             .topbar .controls .language-switcher .language-button {
-                font-size: 18px; /* Slightly smaller for mobile */
+                font-size: 18px;
             }
 
             .topbar .controls .language-switcher .language-dropdown {
-                min-width: 120px; /* Smaller dropdown for mobile */
+                min-width: 120px;
             }
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
     <!-- Topbar -->
     <div class="topbar">
-        <div class="logo">My Digital Garden</div>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            Demo Digital Garden
+        </div>
         <div class="controls">
             <div class="language-switcher">
-                <button class="language-button" id="language-button" title="Select Language">
-                    EN <!-- Default to EN -->
-                </button>
+                <button class="language-button" id="language-button" title="Select Language">EN</button>
                 <div class="language-dropdown" id="language-dropdown">
                     <a href="#" data-lang="EN" data-full="English">English</a>
                     <a href="#" data-lang="OR" data-full="Odia">Odia</a>
                     <a href="#" data-lang="HI" data-full="Hindi">Hindi</a>
                     <a href="#" data-lang="FR" data-full="Français">Français</a>
                     <a href="#" data-lang="ES" data-full="Español">Español</a>
-                    <!-- Add more languages as needed -->
                 </div>
             </div>
-            <div class="icon" title="Theme Toggle"><i class="fas fa-moon"></i></div>
-            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+            <div class="icon" id="theme-toggle" title="Toggle Theme"><i data-feather="moon"></i></div>
+            <div class="hamburger" onclick="toggleSidebar()"><i data-feather="menu"></i></div>
         </div>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="garden-intro">
-            <h2>Welcome to My Garden</h2>
+            <h2>Welcome to Demo Garden</h2>
             <p>A living collection of thoughts, notes, and essays. Explore, connect, and grow.</p>
         </div>
         <div class="search-bar">
-            <i class="fas fa-search search-icon"></i>
+            <i data-feather="search" class="search-icon"></i>
             <input type="text" placeholder="Search notes, topics, or tags...">
         </div>
         <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#"><i class="fas fa-user"></i> About Me</a></li>
+            <li><a href="#"><i data-feather="home"></i> Home</a></li>
+            <li><a href="#"><i data-feather="user"></i> About Me</a></li>
             <li>
                 <a href="#" class="toggle-submenu" onclick="toggleSubmenu(this)">
-                    <span class="label"><i class="fas fa-leaf"></i> Topics</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <span class="label"><i data-feather="leaf"></i> Topics</span>
+                    <i data-feather="chevron-down" class="chevron"></i>
                 </a>
                 <ul class="submenu">
                     <li><a href="#">Philosophy</a></li>
                     <li>
                         <a href="#" class="toggle-submenu" onclick="toggleSubmenu(this)">
                             <span class="label">Technology</span>
-                            <i class="fas fa-chevron-down"></i>
+                            <i data-feather="chevron-down" class="chevron"></i>
                         </a>
                         <ul class="submenu">
                             <li><a href="#">AI</a></li>
                             <li>
                                 <a href="#" class="toggle-submenu" onclick="toggleSubmenu(this)">
                                     <span class="label">Web Development</span>
-                                    <i class="fas fa-chevron-down"></i>
+                                    <i data-feather="chevron-down" class="chevron"></i>
                                 </a>
                                 <ul class="submenu">
                                     <li><a href="#">HTML/CSS</a></li>
                                     <li>
                                         <a href="#" class="toggle-submenu" onclick="toggleSubmenu(this)">
                                             <span class="label">JavaScript</span>
-                                            <i class="fas fa-chevron-down"></i>
+                                            <i data-feather="chevron-down" class="chevron"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li><a href="#">Frameworks</a></li>
@@ -468,23 +499,21 @@
                     <li><a href="#">Science</a></li>
                     <li><a href="#">Art & Creativity</a></li>
                     <li><a href="#">Personal Growth</a></li>
-                    <!-- Add more subtopics for large content -->
                 </ul>
             </li>
             <li>
                 <a href="#" class="toggle-submenu" onclick="toggleSubmenu(this)">
-                    <span class="label"><i class="fas fa-tags"></i> Tags</span>
-                    <i class="fas fa-chevron-down"></i>
+                    <span class="label"><i data-feather="tag"></i> Tags</span>
+                    <i data-feather="chevron-down" class="chevron"></i>
                 </a>
                 <ul class="submenu">
                     <li><a href="#">#Productivity</a></li>
                     <li><a href="#">#AI</a></li>
                     <li><a href="#">#Books</a></li>
-                    <!-- Expand with many tags for thousands of pages -->
                 </ul>
             </li>
-            <li><a href="#"><i class="fas fa-sitemap"></i> Site Map</a></li>
-            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+            <li><a href="#"><i data-feather="map"></i> Site Map</a></li>
+            <li><a href="#"><i data-feather="rss"></i> RSS Feed</a></li>
         </ul>
         <div class="recent-notes">
             <h3>Recent Notes</h3>
@@ -492,7 +521,6 @@
                 <li><a href="#">The Art of Slow Thinking</a></li>
                 <li><a href="#">Quantum Computing Basics</a></li>
                 <li><a href="#">Gardening Metaphors for Life</a></li>
-                <!-- List many recent entries -->
             </ul>
         </div>
     </div>
@@ -506,7 +534,7 @@
         <div id="pdf-viewer"></div>
         <!-- Normal Content -->
         <div class="content">
-            <h1>Welcome to My Digital Garden</h1>
+            <h1>Welcome to Demo Digital Garden</h1>
             <p>This is a sample page demonstrating normal content in the main content area. Here, you can add text, images, or any other HTML elements to display your notes, essays, or other information.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <img src="https://via.placeholder.com/600x300" alt="Sample Image">
@@ -528,6 +556,28 @@
     </div>
 
     <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            const icon = themeToggle.querySelector('i');
+            icon.setAttribute('data-feather', newTheme === 'dark' ? 'moon' : 'sun');
+            feather.replace();
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+        const icon = themeToggle.querySelector('i');
+        icon.setAttribute('data-feather', savedTheme === 'dark' ? 'moon' : 'sun');
+        feather.replace();
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -537,24 +587,16 @@
 
         function toggleSubmenu(element) {
             const submenu = element.nextElementSibling;
-            const icon = element.querySelector('.fa-chevron-down');
-        
-            // Toggle class
+            const icon = element.querySelector('.chevron');
             submenu.classList.toggle('active');
-            icon.classList.toggle('fa-rotate-180');
-        
+            icon.classList.toggle('rotate');
             if (submenu.classList.contains('active')) {
-                // Expand smoothly to content height
                 submenu.style.height = submenu.scrollHeight + 'px';
             } else {
-                // Collapse
                 submenu.style.height = '0';
             }
-        
-            // Optional: handle nested submenus to recalc height
             submenu.addEventListener('transitionend', () => {
                 if (submenu.classList.contains('active')) {
-                    // Remove fixed height to allow natural expansion if content changes
                     submenu.style.height = 'auto';
                 }
             }, { once: true });
@@ -568,28 +610,23 @@
             languageDropdown.classList.toggle('active');
         });
 
-        // Handle language selection
         languageDropdown.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const selectedLangCode = link.getAttribute('data-lang');
                 const selectedLangFull = link.getAttribute('data-full');
                 console.log('Selected language:', selectedLangCode, selectedLangFull);
-                // Update button to show language code
                 languageButton.textContent = selectedLangCode;
                 languageDropdown.classList.remove('active');
-                // Add logic here to handle language change (e.g., update content, reload page)
             });
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
                 languageDropdown.classList.remove('active');
             }
         });
 
-        // Keyboard accessibility for language switcher
         languageButton.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();

@@ -13,6 +13,10 @@
             {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
             {{ .ReadingTime }} min read
           </span>
+          <p class="posts-list-item-summary">
+            {{ .Summary | plainify | truncate 250 }}
+            <a class="read-more" href="{{ .RelPermalink }}">read more⤵</a>
+          </p>
         </li>
       {{ end }}
     </ul>
