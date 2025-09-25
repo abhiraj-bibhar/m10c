@@ -312,21 +312,6 @@
             font-size: 14px;
         }
 
-        .sidebar .recent-notes {
-            margin-top: 30px;
-        }
-
-        .sidebar .recent-notes h3 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .sidebar .recent-notes ul li a {
-            font-size: 14px;
-        }
-
         /* Overlay for Mobile */
         .overlay {
             position: fixed;
@@ -515,14 +500,6 @@
             <li><a href="#"><i data-feather="map"></i> Site Map</a></li>
             <li><a href="#"><i data-feather="rss"></i> RSS Feed</a></li>
         </ul>
-        <div class="recent-notes">
-            <h3>Recent Notes</h3>
-            <ul>
-                <li><a href="#">The Art of Slow Thinking</a></li>
-                <li><a href="#">Quantum Computing Basics</a></li>
-                <li><a href="#">Gardening Metaphors for Life</a></li>
-            </ul>
-        </div>
     </div>
 
     <!-- Overlay -->
@@ -543,7 +520,7 @@
         <script async type="module">
             import EmbedPDF from 'https://snippet.embedpdf.com/embedpdf.js';
             // Uncomment to enable PDF viewer
-            /*
+            
             EmbedPDF.init({
                 type: 'container',
                 target: document.getElementById('pdf-viewer'),
@@ -551,7 +528,7 @@
             });
             document.getElementById('pdf-viewer').style.display = 'block';
             document.querySelector('.content').style.display = 'none';
-            */
+            
         </script>
     </div>
 

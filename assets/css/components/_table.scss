@@ -1,0 +1,47 @@
+// ==============================
+// Table Styles
+// ==============================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  background-color: $dark-color;
+  overflow: hidden;
+
+  thead {
+    background-color: $darkest-color;
+    color: $light-color;
+    text-align: center;
+    font-weight: 600;
+
+    th {
+      padding: 12px 16px;
+      border-bottom: 1px solid $light-color;
+      border-left: 1px solid $light-color;
+      border-right: 1px solid $light-color;
+      border-top: 1px solid $light-color;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: $dark-color;
+      }
+
+      &:hover {
+        background-color: $darkest-color;
+      }
+
+      td {
+        padding: 12px 16px;
+        border-bottom: 1px solid $light-color;
+        border-left: 1px solid $light-color;
+        border-right: 1px solid $light-color;
+      }
+    }
+  }
+}
