@@ -2,3 +2,6 @@ public/
 .hugo_build.lock
 node_modules/
 resources
+testing
+content
+package.json
